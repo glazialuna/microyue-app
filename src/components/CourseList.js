@@ -1,15 +1,23 @@
-const CourseList = ({courses}) => {
-    return (Object.keys(courses).map((c) => <p>{courses[c].term} CS {courses[c].number}: {courses[c].title}</p>))
-}
-//     // <div>
-//     return (Object.entries(courses).map((c) => <p>{c.term}</p>))
-//     {/* </div> */}
-// )
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './CourseList.css'
+const CourseList =({courses}) => (
+    <div className='course-list'>
+        {
+            Object.keys(courses).map((c) => (<Course course={courses[c]}/>))
+        }
+    </div>
 
-// "F101" : {
-//     "term": "Fall",
-//     "number": "101",
-//     "meets" : "MWF 11:00-11:50",
-//     "title" : "Computer Science: Concepts, Philosophy, and Connections"
-//   },
+    );
+const Course = ({course}) => {
+    return (
+        <div className="card m-1 p-2">
+             <div className="card-body">
+                <h5 className="card-title">{course.term} CS {course.number}</h5>
+                <div className="card-text">{course.title}</div>
+                <div className="card-footer">{course.meets}</div>
+            </div>
+        </div>
+    );
+}
+
 export default CourseList;
