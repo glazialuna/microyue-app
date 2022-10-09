@@ -4,7 +4,7 @@ import Banner from './components/Banner';
 import CourseList from './components/CourseList';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useJsonQuery } from './utilities/fetch';
-// import DATA from './utilities/cs-courses.json'
+import datas from './utilities/cs-courses.json';
 
 
 const schedule = {
@@ -39,9 +39,15 @@ const schedule = {
 
 
 const Main = () => {
-  // const [data, isLoading, error] = useJsonQuery('https://courses.cs.northwestern.edu/394/guides/data/cs-courses.php');
-  const [data, isLoading, error] = useJsonQuery('./utilities/cs-courses.json');
+  // return (
+  //   <div>
+  //     <Banner text={datas.title} />
+  //     <CourseList courses={datas.courses} />
+  //   </div>
+  // );
 
+
+  const [data, isLoading, error] = useJsonQuery('https://courses.cs.northwestern.edu/394/guides/data/cs-courses.php');
   if (error) return <h1>Error loading user data: {`${error}`}</h1>;
   if (isLoading) return <h1>Loading user data...</h1>;
   if (!data) return <h1>No user data found</h1>;
@@ -52,6 +58,8 @@ const Main = () => {
       <CourseList courses={data.courses} />
     </div>
   );
+
+
 }
 
 const queryClient = new QueryClient();
