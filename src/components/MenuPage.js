@@ -15,7 +15,7 @@ const MenuButton = ({meal, selection, setSelection}) => (
 );
 
 const MenuSelector =({selection, setSelection}) =>(
-    <div>
+    <div className="btn-group">
         {
             Object.keys(meals).map(meal => 
             <MenuButton key={meal} meal={meal} selection={selection} setSelection={setSelection}></MenuButton>
@@ -24,7 +24,13 @@ const MenuSelector =({selection, setSelection}) =>(
     </div>
 );
 
-const Menu = ({selection}) => {
+const Menu = ({selection}) => (
+    <div className="card">
+        {meals[selection]}
+    </div>
+);
+
+const MenuPage = () => {
     const [selection, setSelection] = useState(()=>Object.keys(meals)[0]);
     return (
         <div>
