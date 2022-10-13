@@ -7,6 +7,7 @@ import { useJsonQuery } from './utilities/fetch';
 import datas from './utilities/cs-courses.json';
 import MenuPage from './components/MenuPage';
 import Chooser from './components/Chooser';
+import TermPage from './components/TermFilter';
 
 
 const schedule = {
@@ -40,6 +41,7 @@ const schedule = {
 };
 
 
+// loading data from php
 const Main = () => {
   // return (
   //   <div>
@@ -70,8 +72,10 @@ function App(){
   return (
     <QueryClientProvider client={queryClient}>
       <div>
-        <MenuPage/>
-        <Chooser></Chooser>
+        {/* <Main></Main> */}
+        {/* <MenuPage/> */}
+        {/* <Chooser></Chooser> */}
+        <TermPage></TermPage>
       </div>
     </QueryClientProvider>
   );

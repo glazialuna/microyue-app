@@ -14,7 +14,7 @@ const MenuButton = ({meal, selection, setSelection}) => (
     </div>
 );
 
-const MenuSelector =({selection, setSelection}) =>(
+const MenuSelector =(selection, setSelection) =>(
     <div className="btn-group">
         {
             Object.keys(meals).map(meal => 
@@ -38,6 +38,6 @@ const MenuPage = () => {
             <Menu selection={selection}></Menu>
         </div>
     );
-}
+};
 
 export default MenuPage;
