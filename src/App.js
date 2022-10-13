@@ -5,9 +5,8 @@ import CourseList from './components/CourseList';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useJsonQuery } from './utilities/fetch';
 import datas from './utilities/cs-courses.json';
-import MenuPage from './components/MenuPage';
-import Chooser from './components/Chooser';
 import TermPage from './components/TermFilter';
+import SelectedPage from './components/CourseSelection';
 
 
 const schedule = {
@@ -73,9 +72,8 @@ function App(){
     <QueryClientProvider client={queryClient}>
       <div>
         {/* <Main></Main> */}
-        {/* <MenuPage/> */}
-        {/* <Chooser></Chooser> */}
-        <TermPage></TermPage>
+        {/* <TermPage courses={datas.courses}></TermPage> */}
+        <SelectedPage courses={datas.courses}></SelectedPage>
       </div>
     </QueryClientProvider>
   );
