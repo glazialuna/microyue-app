@@ -72,8 +72,7 @@ function App(){
     <QueryClientProvider client={queryClient}>
       <div>
         {/* <Main></Main> */}
-        {/* <TermPage courses={datas.courses}></TermPage> */}
-        <SelectedPage courses={datas.courses}></SelectedPage>
+        <TermPage courses={datas.courses}></TermPage>
       </div>
     </QueryClientProvider>
   );

@@ -1,5 +1,6 @@
 import {useState} from "react";
-import CourseList from "./CourseList";
+// import CourseList from "./CourseList";
+import SelectedPage from "./CourseSelection";
 
 const terms = ['Fall', 'Spring', 'Winter'];
 const TermButton = ({term, termChoice, setTerm}) => (
@@ -30,7 +31,7 @@ const TermPage = ({courses}) =>{
         <div>
             <TermSelector termChoice={termChoice} setTerm={setTerm}></TermSelector>
             <h1>{termChoice}</h1>
-            <CourseList courses={filterTerm}></CourseList>
+            <SelectedPage courses={filterTerm}></SelectedPage>
         </div>
     );
 };
