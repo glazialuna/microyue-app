@@ -1,9 +1,7 @@
 import {useState} from "react";
 import CourseList from "./CourseList";
-import datas from '../utilities/cs-courses.json';
+
 const terms = ['Fall', 'Spring', 'Winter'];
-
-
 const TermButton = ({term, termChoice, setTerm}) => (
     <div>
         <input type="radio" id={term} className="btn-check" checked={term === termChoice} autoComplete="off" onChange={()=>setTerm(term)} />
@@ -24,9 +22,9 @@ const TermSelector = ({termChoice, setTerm}) => (
 );
 
 
-const TermPage = () =>{
+const TermPage = ({courses}) =>{
     const [termChoice, setTerm] = useState('Fall');
-    const filterTerm = Object.values(datas.courses).filter(course => course.term === termChoice);
+    const filterTerm = Object.values(courses).filter(course => course.term === termChoice);
 
     return (
         <div>
