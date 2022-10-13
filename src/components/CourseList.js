@@ -3,7 +3,7 @@ import './CourseList.css'
 const CourseList =({courses}) => (
     <div className='course-list'>
         {
-            Object.keys(courses).map((c) => (<Course course={courses[c]}/>))
+            Object.keys(courses).map((c) => (<Course key={c} course={courses[c]}/>))
         }
     </div>
 
