@@ -8,6 +8,8 @@ const CourseList =({courses, selected, toggleSelected}) => (
     </div>
 
     );
+
+
 const Course = ({id, course, selected, toggleSelected}) => {
     return (
         <div className="card m-1 p-2" onClick={() => toggleSelected(id)}>

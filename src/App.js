@@ -5,7 +5,7 @@ import CourseList from './components/CourseList';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useJsonQuery } from './utilities/fetch';
 import datas from './utilities/cs-courses.json';
-import TermPage from './components/TermFilter';
+import TermPage from './components/TermPage';
 import SelectedPage from './components/CourseSelection';
 
 

@@ -2,10 +2,8 @@ import {useState} from "react";
 import CourseList from "./CourseList";
 
 
-const SelectedPage = ({courses}) => {
-    const [selected, setSelected] = useState([]);
-    // console.log(selected);
-  
+const SelectedPage = ({courses, selected, setSelected}) => {
+
     const toggleSelected = (item) => setSelected(
       selected.includes(item)
       ? selected.filter(x => x !== item)
