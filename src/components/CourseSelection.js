@@ -4,7 +4,7 @@ import CourseList from "./CourseList";
 
 const SelectedPage = ({courses}) => {
     const [selected, setSelected] = useState([]);
-    console.log(selected);
+    // console.log(selected);
   
     const toggleSelected = (item) => setSelected(
       selected.includes(item)
