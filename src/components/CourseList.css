@@ -8,7 +8,15 @@
     object-fit: cover;
 }
 
+
+
 .selected {
   background-color:lemonchiffon;
   color: green;
 }
+
+.unselectable {
+  background-color:rgb(137, 133, 133);
+  color: rgb(181, 177, 177);
+}
+

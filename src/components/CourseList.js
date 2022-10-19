@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './CourseList.css'
+import Noconflictfromlist from '../utilities/conflict';
 const CourseList =({courses, selected, toggleSelected}) => (
     <div className='course-list'>
         {
@@ -12,8 +13,9 @@ const CourseList =({courses, selected, toggleSelected}) => (
 
 const Course = ({id, course, selected, toggleSelected}) => {
     return (
-        <div className="card m-1 p-2" onClick={() => toggleSelected(id)}>
-             <div className={`card-body ${selected.includes(id) ? 'selected' : ''}`}>
+        <div className="card m-1 p-2" onClick={() => { if (Noconflictfromlist(course, selected) | selected.includes(id)) toggleSelected(id);}}>
+             <div className={`card-body 
+             ${selected.includes(id) ? 'selected' : Noconflictfromlist(course, selected) ? '' :'unselectable'}`}>
                 <h5 className="card-title">{course.term} CS {course.number}</h5>
                     <div className="card-text">{course.title}</div>
                     <div className="card-footer">{course.meets}</div>

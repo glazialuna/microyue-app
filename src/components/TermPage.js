@@ -2,6 +2,7 @@ import {useState} from "react";
 import CourseList from "./CourseList";
 import SelectedPage from "./CourseSelection";
 import Modal from "./Modal";
+import { conflict } from "../utilities/conflict";
 
 const terms = ['Fall', 'Spring', 'Winter'];
 const TermButton = ({term, termChoice, setTerm}) => (
@@ -44,6 +45,8 @@ const TermPage = ({courses}) =>{
     const openModal = () => setOpen(true);
     const closeModal = () => setOpen(false);
 
+    // console.log(conflict(courses["F101"], courses["F110"]));
+
     return (
         <div>
             <TermSelector termChoice={termChoice} setTerm={setTerm}></TermSelector>
@@ -51,7 +54,7 @@ const TermPage = ({courses}) =>{
             <Modal open={open} close={closeModal}>
                 {
                     selected.length 
-                        ?<CourseList courses={selectCourse} selected={selected}></CourseList>
+                        ?<CourseList courses={selectCourse} selected={[]}></CourseList>
                         :"You can click on card to select courses"
                 }       
             </Modal>
