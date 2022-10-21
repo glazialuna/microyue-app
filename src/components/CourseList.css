@@ -7,6 +7,9 @@
     height: 10vw;
     object-fit: cover;
 }
+.card-title {
+  display: flex;
+}
 
 
 

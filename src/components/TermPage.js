@@ -45,7 +45,7 @@ const TermPage = ({courses}) =>{
     const openModal = () => setOpen(true);
     const closeModal = () => setOpen(false);
 
-    // console.log(conflict(courses["F101"], courses["F110"]));
+
 
     return (
         <div>
@@ -54,6 +54,7 @@ const TermPage = ({courses}) =>{
             <Modal open={open} close={closeModal}>
                 {
                     selected.length 
+                    // remains fixing why selected = selected not selected
                         ?<CourseList courses={selectCourse} selected={[]}></CourseList>
                         :"You can click on card to select courses"
                 }       
