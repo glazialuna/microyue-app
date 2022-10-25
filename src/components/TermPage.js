@@ -3,6 +3,11 @@ import CourseList from "./CourseList";
 import SelectedPage from "./CourseSelection";
 import Modal from "./Modal";
 import { conflict } from "../utilities/conflict";
+// import { Navigation } from "react-router-dom";
+// import Navigation from "./Navigation";
+import { signInWithGoogle, signOut, useAuthState,listAllUsers } from '../utilities/firebase';
+
+
 
 const terms = ['Fall', 'Spring', 'Winter'];
 const TermButton = ({term, termChoice, setTerm}) => (
@@ -22,6 +27,14 @@ const TermSelector = ({termChoice, setTerm}) => (
                 )
         }
     </div>
+);
+
+const SignInButton = () => (
+    <button className="ms-auto btn btn-dark mb-1 p-2" onClick={signInWithGoogle} style={{float: 'right'}}>Sign in</button>
+  );
+  
+const SignOutButton = () => (
+    <button className="ms-auto btn btn-dark mb-1 p-2" onClick={signOut} style={{float: 'right'}}>Sign out</button>
 );
 
 
@@ -45,12 +58,20 @@ const TermPage = ({courses}) =>{
     const openModal = () => setOpen(true);
     const closeModal = () => setOpen(false);
 
+    // Sign in/out
+    const [user] = useAuthState();
+    // user?console.log(user.displayName):console.log(user);
+    // console.log(listAllUsers());
+    console.log(listAllUsers());
+
 
 
     return (
         <div>
             <TermSelector termChoice={termChoice} setTerm={setTerm}></TermSelector>
-            <button className="btn btn-outline-dark mb-1 p-2" onClick={openModal} style={{float:"right"}}>Course Plan</button>
+            <button className="btn btn-outline-dark mb-1 p-2" onClick={openModal} style={{marginLeft: '1em'}}>Course Plan</button>
+            {user ? <i style={{marginLeft: '1em'}}>hello,{user.displayName}</i> : ""}
+            {user ? <SignOutButton /> : <SignInButton />}
             <Modal open={open} close={closeModal}>
                 {
                     selected.length 
@@ -60,7 +81,7 @@ const TermPage = ({courses}) =>{
                 }       
             </Modal>
             <h1>{termChoice}</h1>
-            <SelectedPage courses={filterTerm} selected={selected} setSelected={setSelected}></SelectedPage>
+            <SelectedPage courses={filterTerm} selected={selected} setSelected={setSelected} editButton={user?true:false}></SelectedPage>
         </div>
     );
 };

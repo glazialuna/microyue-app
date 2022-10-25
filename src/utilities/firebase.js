@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { initializeApp } from "firebase/app";
 import { getDatabase, onValue, ref, update } from 'firebase/database';
+import { listUsersResult, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
 
 const firebaseConfig = {
     apiKey: "AIzaSyC9WtatY3WqtSHuqscs6QJnU6eBFjVlQN8",
@@ -39,6 +40,7 @@ const makeResult = (error) => {
   return { timestamp, error, message };
 };
 
+// Update date to firebase
 export const useDbUpdate = (path) => {
   const [result, setResult] = useState();
   const updateData = useCallback((value) => {
@@ -48,4 +50,45 @@ export const useDbUpdate = (path) => {
   }, [database, path]);
 
   return [updateData, result];
+};
+
+// Firebase authentication
+export const signInWithGoogle = () => {
+  signInWithPopup(getAuth(firebase), new GoogleAuthProvider());
+};
+
+const firebaseSignOut = () => signOut(getAuth(firebase));
+
+export { firebaseSignOut as signOut };
+
+export const useAuthState = () => {
+  const [user, setUser] = useState();
+  
+  useEffect(() => (
+    onAuthStateChanged(getAuth(firebase), setUser)
+  ));
+
+  return [user];
+};
+
+
+export const listAllUsers = (nextPageToken) => {
+  const users = [];
+  // users = getAuth(firebase).listUsersResult();
+  // List batch of users, 1000 at a time.
+  // getAuth(firebase)
+  //   .listUsers(1000, nextPageToken)
+  //   .then((listUsersResult) => {
+  //     listUsersResult.users.forEach((userRecord) => {
+  //       console.log('user', userRecord.toJSON());
+  //     });
+  //     if (listUsersResult.pageToken) {
+  //       // List next batch of users.
+  //       listAllUsers(listUsersResult.pageToken);
+  //     }
+  //   })
+  //   .catch((error) => {
+  //     console.log('Error listing users:', error);
+  //   });
+  return users;
 };

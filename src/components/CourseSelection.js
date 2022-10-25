@@ -2,7 +2,7 @@ import {useState} from "react";
 import CourseList from "./CourseList";
 
 
-const SelectedPage = ({courses, selected, setSelected}) => {
+const SelectedPage = ({courses, selected, setSelected, editButton}) => {
     const toggleSelected = (item) => {
       setSelected(
         selected.includes(item)
@@ -15,7 +15,7 @@ const SelectedPage = ({courses, selected, setSelected}) => {
     
   
     return (
-        <CourseList courses={courses} selected={selected} toggleSelected={toggleSelected}></CourseList>
+        <CourseList courses={courses} selected={selected} toggleSelected={toggleSelected} editButton={editButton}></CourseList>
     );
   };
   
