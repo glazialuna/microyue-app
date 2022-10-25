@@ -1,6 +1,6 @@
 import { useFormData } from "../utilities/useFormData";
 import { useNavigate } from "react-router-dom";
-import { useDbUpdate } from "../utilities/firebase";
+import { useDbUpdate, useAuthState} from "../utilities/firebase";
 
 // check input valid
 const validateUserData = (id, val) => {
@@ -44,6 +44,8 @@ const CourseEditor = ({course}) => {
     }
   };
   console.log(state);
+  const [user, isAdmin] = useAuthState();
+  console.log(user?user.displayName:"none auth", isAdmin?"admin":"guest");
   return (
     <div style={{marginLeft: '10em',marginRight: '10em'}}>
       <form onSubmit={submit}>

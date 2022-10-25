@@ -8,8 +8,7 @@ import datas from './utilities/cs-courses.json';
 import TermPage from './components/TermPage';
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import CourseEditor from './components/CourseEditor';
-import { useDbData, useProfile } from './utilities/firebase';
-import { signInWithGoogle, signOut, useAuthState,listAllUsers } from './utilities/firebase';
+import { useDbData} from './utilities/firebase';
 
 // loading data from php
 const Main = () => {

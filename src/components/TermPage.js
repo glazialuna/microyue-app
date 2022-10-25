@@ -2,8 +2,6 @@ import {useState} from "react";
 import CourseList from "./CourseList";
 import SelectedPage from "./CourseSelection";
 import Modal from "./Modal";
-import { conflict } from "../utilities/conflict";
-// import { Navigation } from "react-router-dom";
 import { signInWithGoogle, signOut, useAuthState,listAllUsers,useProfile, userIsAdmin } from '../utilities/firebase';
 
 
@@ -57,25 +55,26 @@ const TermPage = ({courses}) =>{
 
     // Sign in/out
     const [user, isAdmin] = useAuthState();
-    // console.log(isAdmin);
-
-
+    // console.log(user?user.displayName:"", isAdmin?"admin":"guest");
 
     return (
         <div>
-            <TermSelector termChoice={termChoice} setTerm={setTerm}></TermSelector>
-            <button className="btn btn-outline-dark mb-1 p-2" onClick={openModal} style={{marginLeft: '1em'}}>Course Plan</button>
-            {user ? <i style={{marginLeft: '1em'}}>hello,{user.displayName}</i> : ""}
-            {user ? <SignOutButton /> : <SignInButton />}
-            <Modal open={open} close={closeModal}>
-                {
-                    selected.length 
-                    // remains fixing why selected = selected not selected
-                        ?<CourseList courses={selectCourse} selected={[]}></CourseList>
-                        :"You can click on card to select courses"
-                }       
-            </Modal>
-            {/* <h1>{termChoice}</h1> */}
+            <nav className="navigation">
+                <TermSelector termChoice={termChoice} setTerm={setTerm}></TermSelector>
+                <button className="btn btn-outline-dark mb-1 p-2" onClick={openModal} style={{marginLeft: '1em'}}>Course Plan</button>
+                {user ? <i style={{marginLeft: '1em'}}>hello,{user.displayName}</i> : ""}
+                {user ? <SignOutButton /> : <SignInButton />}
+                <Modal open={open} close={closeModal}>
+                    {
+                        selected.length 
+                        // remains fixing why selected = selected not selected
+                            ?<CourseList courses={selectCourse} selected={[]}></CourseList>
+                            :"You can click on card to select courses"
+                    }       
+                </Modal>
+            </nav>
+            
+
             {user? <SelectedPage courses={courses} selected={selected} setSelected={setSelected} termChoice={termChoice} editButton={isAdmin}></SelectedPage>
                 : <i style={{marginLeft: '1em'}}>Log in first</i>}
             
