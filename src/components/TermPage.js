@@ -4,7 +4,7 @@ import SelectedPage from "./CourseSelection";
 import Modal from "./Modal";
 import { conflict } from "../utilities/conflict";
 // import { Navigation } from "react-router-dom";
-import { signInWithGoogle, signOut, useAuthState,listAllUsers,useProfile } from '../utilities/firebase';
+import { signInWithGoogle, signOut, useAuthState,listAllUsers,useProfile, userIsAdmin } from '../utilities/firebase';
 
 
 
@@ -56,9 +56,8 @@ const TermPage = ({courses}) =>{
     const closeModal = () => setOpen(false);
 
     // Sign in/out
-    const [user] = useAuthState();
-    const isAdmin = user?(user.uid == "ZXVNRflvzQgVY54KXaHRRWQPG1k1"):false;
-    console.log(isAdmin?"log in as admin":"log in as guest");
+    const [user, isAdmin] = useAuthState();
+    // console.log(isAdmin);
 
 
 

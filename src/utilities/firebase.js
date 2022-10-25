@@ -63,12 +63,13 @@ export { firebaseSignOut as signOut };
 
 export const useAuthState = () => {
   const [user, setUser] = useState();
-  
+  const [isAdmin, isLoading, error] =  useDbData(`/admins/${user?.uid}`);
+
   useEffect(() => (
     onAuthStateChanged(getAuth(firebase), setUser)
   ));
 
-  return [user];
+  return [user, isAdmin];
 };
 
 
@@ -92,5 +93,6 @@ export const listAllUsers = (nextPageToken) => {
   //   });
   return users;
 };
+
 
 
