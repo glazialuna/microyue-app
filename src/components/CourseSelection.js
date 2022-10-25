@@ -2,7 +2,11 @@ import {useState} from "react";
 import CourseList from "./CourseList";
 
 
-const SelectedPage = ({courses, selected, setSelected, editButton}) => {
+const SelectedPage = ({courses, selected, setSelected, termChoice, editButton}) => {
+  const filterTerm = Object.fromEntries(
+    Object.entries(courses)
+    .filter(([key, course]) => course.term === termChoice));
+  
     const toggleSelected = (item) => {
       setSelected(
         selected.includes(item)
@@ -15,7 +19,10 @@ const SelectedPage = ({courses, selected, setSelected, editButton}) => {
     
   
     return (
-        <CourseList courses={courses} selected={selected} toggleSelected={toggleSelected} editButton={editButton}></CourseList>
+      <div>
+        <h1>{termChoice}</h1>
+        <CourseList courses={filterTerm} selected={selected} toggleSelected={toggleSelected} editButton={editButton}></CourseList>
+      </div>
     );
   };
   

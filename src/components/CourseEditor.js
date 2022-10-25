@@ -19,6 +19,7 @@ const ButtonBar = ({message, disabled}) => {
     <div className="d-flex">
       <button type="button" className="btn btn-outline-dark me-2" onClick={() => navigate(-1)}>Cancel</button>
       <button type="submit" className="btn btn-primary me-auto" disabled={disabled}>Submit</button>
+      <p>{message}</p>
     </div>
   );
 };
@@ -48,7 +49,7 @@ const CourseEditor = ({course}) => {
       <form onSubmit={submit}>
       <InputField property="title" text="Input Title" state={state} change={change} />
       <InputField property="meets" text="Meeting Time" state={state} change={change} />
-      <ButtonBar/>
+      <ButtonBar message={result?.message}/>
       </form>
     </div>
   );

@@ -4,8 +4,7 @@ import SelectedPage from "./CourseSelection";
 import Modal from "./Modal";
 import { conflict } from "../utilities/conflict";
 // import { Navigation } from "react-router-dom";
-// import Navigation from "./Navigation";
-import { signInWithGoogle, signOut, useAuthState,listAllUsers } from '../utilities/firebase';
+import { signInWithGoogle, signOut, useAuthState,listAllUsers,useProfile } from '../utilities/firebase';
 
 
 
@@ -41,9 +40,7 @@ const SignOutButton = () => (
 const TermPage = ({courses}) =>{
     // filter Terms
     const [termChoice, setTerm] = useState('Fall');
-    const filterTerm = Object.fromEntries(
-                        Object.entries(courses)
-                        .filter(([key, course]) => course.term === termChoice));
+    
 
     // Course Selection
     const [selected, setSelected] = useState([]);
@@ -60,9 +57,8 @@ const TermPage = ({courses}) =>{
 
     // Sign in/out
     const [user] = useAuthState();
-    // user?console.log(user.displayName):console.log(user);
-    // console.log(listAllUsers());
-    console.log(listAllUsers());
+    const isAdmin = user?(user.uid == "ZXVNRflvzQgVY54KXaHRRWQPG1k1"):false;
+    console.log(isAdmin?"log in as admin":"log in as guest");
 
 
 
@@ -80,8 +76,10 @@ const TermPage = ({courses}) =>{
                         :"You can click on card to select courses"
                 }       
             </Modal>
-            <h1>{termChoice}</h1>
-            <SelectedPage courses={filterTerm} selected={selected} setSelected={setSelected} editButton={user?true:false}></SelectedPage>
+            {/* <h1>{termChoice}</h1> */}
+            {user? <SelectedPage courses={courses} selected={selected} setSelected={setSelected} termChoice={termChoice} editButton={isAdmin}></SelectedPage>
+                : <i style={{marginLeft: '1em'}}>Log in first</i>}
+            
         </div>
     );
 };

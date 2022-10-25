@@ -8,7 +8,8 @@ import datas from './utilities/cs-courses.json';
 import TermPage from './components/TermPage';
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import CourseEditor from './components/CourseEditor';
-import { useDbData } from './utilities/firebase';
+import { useDbData, useProfile } from './utilities/firebase';
+import { signInWithGoogle, signOut, useAuthState,listAllUsers } from './utilities/firebase';
 
 // loading data from php
 const Main = () => {
@@ -18,6 +19,8 @@ const Main = () => {
   if (error) return <h1>Error loading user data: {`${error}`}</h1>;
   // if (isLoading) return <h1>Loading user data...</h1>;
   if (!data) return <h1>No user data found</h1>;
+
+  
   
   return (
     <div>
