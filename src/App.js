@@ -25,7 +25,10 @@ const Main = () => {
         <Routes> 
           {/* adding routes */}
           <Route path="/" element={<TermPage courses={data.courses}></TermPage>}></Route>
-          <Route path="/CourseEditor" element={<CourseEditor></CourseEditor>}></Route>
+          {Object.keys(data.courses).map(id => (
+            <Route path={`/CourseEditor/${id}`} element={<CourseEditor course={id}></CourseEditor>}></Route>
+          ))}
+
         </Routes>
       </BrowserRouter>
     </div>

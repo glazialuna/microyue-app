@@ -23,7 +23,7 @@ const Course = ({id, course, selected, toggleSelected}) => {
                 <div className="card-title">
                     <h5>{course.term} CS {course.number}</h5>
                     {/* enable propogation to course plan, href has collapse, button has css */}
-                    <a onClick={(evt) => {window.location.href='/CourseEditor';evt.stopPropagation();}} 
+                    <a onClick={(evt) => {window.location.href=`/CourseEditor/${id}`;evt.stopPropagation();}} 
                          className="bi bi-file-plus" style={{marginLeft: '3em'}}></a>
                 </div>
                 <div className="card-text">{course.title}</div>

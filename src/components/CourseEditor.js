@@ -1,6 +1,6 @@
 import { useFormData } from "../utilities/useFormData";
 import { useNavigate } from "react-router-dom";
-
+import { useDbUpdate } from "../utilities/firebase";
 
 // check input valid
 const validateUserData = (id, val) => {
@@ -35,7 +35,13 @@ const InputField = ({property, text, state, change}) => (
 const CourseEditor = ({course}) => {
   // initialized
   const [state, change] = useFormData(validateUserData, {values:{title:"AA", meets:"WF 12:00-13:00"}});
-  const submit = (evt) => {};
+  const [update, result] = useDbUpdate(`/courses/${course}`);
+  const submit = (evt) => {
+    evt.preventDefault();
+    if (!state.errors){
+      update(state.values);
+    }
+  };
   console.log(state);
   return (
     <div style={{marginLeft: '10em',marginRight: '10em'}}>
