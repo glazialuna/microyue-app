@@ -10,7 +10,7 @@ const terms = ['Fall', 'Spring', 'Winter'];
 const TermButton = ({term, termChoice, setTerm}) => (
     <div>
         <input type="radio" id={term} className="btn-check" checked={term === termChoice} autoComplete="off" onChange={()=>setTerm(term)} />
-        <label className="btn btn-success mb-1 p-2" htmlFor={term}>
+        <label className="btn btn-success mb-1 p-2" htmlFor={term} data-cy={term}>
             {term}
         </label>
     </div>
@@ -74,9 +74,11 @@ const TermPage = ({courses}) =>{
                 </Modal>
             </nav>
             
+            <SelectedPage courses={courses} selected={selected} setSelected={setSelected} termChoice={termChoice} editButton={isAdmin}></SelectedPage>
+                
 
-            {user? <SelectedPage courses={courses} selected={selected} setSelected={setSelected} termChoice={termChoice} editButton={isAdmin}></SelectedPage>
-                : <i style={{marginLeft: '1em'}}>Log in first</i>}
+            {/* {user? <SelectedPage courses={courses} selected={selected} setSelected={setSelected} termChoice={termChoice} editButton={isAdmin}></SelectedPage>
+                : <i style={{marginLeft: '1em'}}>Log in first</i>} */}
             
         </div>
     );

@@ -17,7 +17,8 @@ const Course = ({id, course, selected, toggleSelected, editButton}) => {
     
     
     return (
-        <div className="card m-1 p-2" onClick={() => { if (Noconflictfromlist(course, selected) | selected.includes(id)) toggleSelected(id);}}>
+        <div className="card m-1 p-2" data-cy="course"
+            onClick={() => { if (Noconflictfromlist(course, selected) | selected.includes(id)) toggleSelected(id);}}>
              <div className={`card-body 
              ${selected.includes(id) ? 'selected' : Noconflictfromlist(course, selected) ? '' :'unselectable'}`}>
                 <div className="card-title">
