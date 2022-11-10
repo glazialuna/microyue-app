@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { initializeApp } from "firebase/app";
-import { getDatabase, onValue, ref, update } from 'firebase/database';
-import { listUsersResult, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
+import { getDatabase, onValue, ref, update, connectDatabaseEmulator } from 'firebase/database';
+import { listUsersResult, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut, connectAuthEmulator, signInWithCredential } from 'firebase/auth';
 
 const firebaseConfig = {
     apiKey: "AIzaSyC9WtatY3WqtSHuqscs6QJnU6eBFjVlQN8",
@@ -18,11 +18,12 @@ const firebaseConfig = {
 // Initialize Firebase
 const firebase = initializeApp(firebaseConfig);
 const database = getDatabase(firebase);
+const auth = getAuth(firebase);
 
 // Local firebase
 if (process.env.REACT_APP_EMULATE) {
   connectAuthEmulator(auth, "http://127.0.0.1:9099");
-  connectDatabaseEmulator(db, "127.0.0.1", 9000);
+  connectDatabaseEmulator(database, "127.0.0.1", 9000);
 
   signInWithCredential(auth, GoogleAuthProvider.credential(
     '{"sub": "qEvli4msW0eDz5mSVO6j3W7i8w1k", "email": "tester@gmail.com", "displayName":"Test User", "email_verified": true}'

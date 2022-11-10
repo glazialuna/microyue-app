@@ -58,7 +58,7 @@ const TermPage = ({courses}) =>{
     // console.log(user?user.displayName:"", isAdmin?"admin":"guest");
 
     return (
-        <div>
+        <div defaultValue={process.env.REACT_APP_EMULATE}>
             <nav className="navigation">
                 <TermSelector termChoice={termChoice} setTerm={setTerm}></TermSelector>
                 <button className="btn btn-outline-dark mb-1 p-2" onClick={openModal} style={{marginLeft: '1em'}}>Course Plan</button>
